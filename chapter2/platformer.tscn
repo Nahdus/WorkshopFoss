@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=3 uid="uid://gogdsuhvesj3"]
+
+[ext_resource type="Texture2D" uid="uid://yt148qqusx76" path="res://chapter2/assets/platform.png" id="1_88wcq"]
+[ext_resource type="Script" path="res://chapter2/script/playerScript.gd" id="2_6wrug"]
+[ext_resource type="Texture2D" uid="uid://dmrd35mc1o8h" path="res://chapter2/assets/character.png" id="3_hp4w2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5kyew"]
+size = Vector2(321, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lx3n0"]
+size = Vector2(32, 32)
+
+[node name="platformer" type="Node2D"]
+
+[node name="platform" type="StaticBody2D" parent="."]
+position = Vector2(160, 392)
+collision_layer = 16
+
+[node name="Sprite2D" type="Sprite2D" parent="platform"]
+texture = ExtResource("1_88wcq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="platform"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_5kyew")
+
+[node name="platform2" type="StaticBody2D" parent="."]
+position = Vector2(672, 496)
+collision_layer = 16
+
+[node name="Sprite2D" type="Sprite2D" parent="platform2"]
+texture = ExtResource("1_88wcq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="platform2"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_5kyew")
+
+[node name="platform3" type="StaticBody2D" parent="."]
+position = Vector2(992, 432)
+collision_layer = 16
+
+[node name="Sprite2D" type="Sprite2D" parent="platform3"]
+texture = ExtResource("1_88wcq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="platform3"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_5kyew")
+
+[node name="platform4" type="StaticBody2D" parent="."]
+position = Vector2(288, 464)
+collision_layer = 16
+
+[node name="Sprite2D" type="Sprite2D" parent="platform4"]
+texture = ExtResource("1_88wcq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="platform4"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_5kyew")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(136, 360)
+collision_mask = 16
+script = ExtResource("2_6wrug")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_lx3n0")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("3_hp4w2")

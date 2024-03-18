@@ -1,0 +1,78 @@
+[gd_scene load_steps=7 format=3 uid="uid://dlr7v8unee4ln"]
+
+[ext_resource type="Texture2D" uid="uid://d0frp8vjtlqpr" path="res://chapter3/assets/platform.png" id="1_gdj6r"]
+[ext_resource type="Script" path="res://chapter3/script/playerscript.gd" id="2_mp5oq"]
+[ext_resource type="Texture2D" uid="uid://vh2nyadv1vrr" path="res://chapter3/assets/character.png" id="2_rl4f4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ya2t1"]
+size = Vector2(3200, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cbmdo"]
+size = Vector2(32, 32)
+
+[sub_resource type="GDScript" id="GDScript_yw222"]
+script/source = "extends CharacterBody2D
+
+# Get the gravity from the project settings to be synced with RigidBody nodes.
+const height = 640
+const time = 0.5
+var gravity = (4*height)/pow(time,0)
+var SPEED = 0
+#var JUMP_VELOCITY = -(height - gravity*pow(time,2))/time
+var JUMP_VELOCITY = -height
+
+
+
+func _physics_process(delta):
+	# Add the gravity.
+	if not is_on_floor():
+		velocity.y += gravity * delta
+
+	# Handle Jump.
+	if Input.is_action_just_pressed(\"ui_accept\") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var direction = Input.get_axis(\"ui_left\", \"ui_right\")
+	if direction:
+		velocity.x = direction * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+
+	move_and_slide()
+"
+
+[node name="jumper1" type="Node2D"]
+
+[node name="platform" type="StaticBody2D" parent="."]
+position = Vector2(1600, 464)
+collision_layer = 16
+
+[node name="Sprite2D" type="Sprite2D" parent="platform"]
+texture = ExtResource("1_gdj6r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="platform"]
+shape = SubResource("RectangleShape2D_ya2t1")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(104, 336)
+collision_mask = 16
+script = ExtResource("2_mp5oq")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("2_rl4f4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_cbmdo")
+
+[node name="CharacterBody2D2" type="CharacterBody2D" parent="."]
+position = Vector2(176, 336)
+collision_mask = 16
+script = SubResource("GDScript_yw222")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D2"]
+texture = ExtResource("2_rl4f4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D2"]
+shape = SubResource("RectangleShape2D_cbmdo")
