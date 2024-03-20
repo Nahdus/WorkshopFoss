@@ -4,7 +4,7 @@ extends CharacterBody2D
 const height = 200
 
 #Experiment
-const halftime1 = 2
+const halftime1 = 1
 const halftime2 = 2
 var initialPosition  = position.y
 
