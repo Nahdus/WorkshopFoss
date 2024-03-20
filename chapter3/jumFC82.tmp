@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://7cqp8i0st5sp"]
+[gd_scene load_steps=8 format=3 uid="uid://7cqp8i0st5sp"]
 
 [ext_resource type="Texture2D" uid="uid://d0frp8vjtlqpr" path="res://chapter3/assets/platform.png" id="1_le2vf"]
 [ext_resource type="Script" path="res://chapter3/script/jumpWithHorizontalComponent.gd" id="2_nysq0"]
 [ext_resource type="Texture2D" uid="uid://vh2nyadv1vrr" path="res://chapter3/assets/character.png" id="3_3o8su"]
 [ext_resource type="Script" path="res://chapter3/script/jumpWithHorizontalComponent2D.gd" id="4_ndk30"]
-[ext_resource type="Texture2D" uid="uid://cl4k1u7dopj7p" path="res://icon.svg" id="5_6sd6v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ntlqk"]
 size = Vector2(3200, 32)
@@ -16,7 +15,6 @@ size = Vector2(32, 32)
 size = Vector2(32, 32)
 
 [node name="jumpWithHorizontalComponent" type="Node2D"]
-position = Vector2(0, 24)
 
 [node name="platform" type="StaticBody2D" parent="."]
 position = Vector2(1600, 464)
@@ -29,7 +27,7 @@ texture = ExtResource("1_le2vf")
 shape = SubResource("RectangleShape2D_ntlqk")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(344, 432)
+position = Vector2(104, 336)
 collision_mask = 16
 script = ExtResource("2_nysq0")
 
@@ -40,26 +38,12 @@ texture = ExtResource("3_3o8su")
 shape = SubResource("RectangleShape2D_g5neg")
 
 [node name="CharacterBody2D2" type="CharacterBody2D" parent="."]
-position = Vector2(112, 432)
+position = Vector2(176, 336)
 collision_mask = 16
 script = ExtResource("4_ndk30")
-height1 = 100.0
-peakTime1 = 0.7
-peakTime2 = 0.2
-phase2 = 0.7
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D2"]
 texture = ExtResource("3_3o8su")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D2"]
 shape = SubResource("RectangleShape2D_2g0yk")
-
-[node name="marker" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("5_6sd6v")
-
-[node name="marker2" type="Sprite2D" parent="."]
-position = Vector2(302, 236)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("5_6sd6v")

@@ -4,7 +4,7 @@ extends CharacterBody2D
 const height = 960
 
 #Experiment
-const halftime1 = 0.5
+const halftime1 = 10.0
 const halftime2 = 2.0
 
 

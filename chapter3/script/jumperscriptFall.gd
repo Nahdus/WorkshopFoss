@@ -4,7 +4,7 @@ extends CharacterBody2D
 const height = 200
 
 #Experiment
-const halftime1 = 2
+const halftime1 = 0.5
 const halftime2 = 2
 var initialPosition  = position.y
 
@@ -33,6 +33,9 @@ func _physics_process(delta):
 #		print_debug(abs(position.y - initialPosition))
 		if abs(position.y - initialPosition) >= height-5:
 			if velocity.y<-0.001:
+				velocity.y =0
+				print_debug("falling")
+				%marker.set_position(self.position)
 				gravity = get_gravityFall()
 		
 	
