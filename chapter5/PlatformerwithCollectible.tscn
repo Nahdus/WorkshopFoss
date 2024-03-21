@@ -1,12 +1,14 @@
-[gd_scene load_steps=16 format=3 uid="uid://b3aqqcb7x22v6"]
+[gd_scene load_steps=18 format=3 uid="uid://bp66385jdnfq1"]
 
-[ext_resource type="Texture2D" uid="uid://dyki2au3w5r38" path="res://chapter5/assets/floor.png" id="1_re4o6"]
-[ext_resource type="Script" path="res://chapter4/script/playerScript.gd" id="2_f4dvh"]
-[ext_resource type="Texture2D" uid="uid://xmuvxp2nc1xf" path="res://chapter5/assets/character.png" id="3_4bec7"]
-[ext_resource type="Texture2D" uid="uid://cjgyxgtdnec8h" path="res://chapter5/assets/movingPlatform.png" id="4_47cvl"]
+[ext_resource type="Texture2D" uid="uid://dyki2au3w5r38" path="res://chapter5/assets/floor.png" id="1_c0x1m"]
+[ext_resource type="Script" path="res://chapter4/script/playerScript.gd" id="2_mk8en"]
+[ext_resource type="Texture2D" uid="uid://xmuvxp2nc1xf" path="res://chapter5/assets/character.png" id="3_cf5q1"]
+[ext_resource type="Texture2D" uid="uid://cjgyxgtdnec8h" path="res://chapter5/assets/movingPlatform.png" id="4_bjih1"]
+[ext_resource type="Script" path="res://chapter5/script/coins.gd" id="5_wkons"]
+[ext_resource type="PackedScene" uid="uid://ba5723ovbwogs" path="res://chapter5/scene/coin.tscn" id="6_mdob0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_re2q1"]
-texture = ExtResource("1_re4o6")
+texture = ExtResource("1_c0x1m")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -103,7 +105,7 @@ _data = {
 "updown": SubResource("Animation_8gejy")
 }
 
-[node name="Platformer" type="Node2D"]
+[node name="PlatformerWithCollectible" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_pcmf4")
@@ -113,10 +115,10 @@ layer_0/tile_data = PackedInt32Array(458752, 0, 0, 458753, 0, 0, 458754, 0, 0, 4
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 position = Vector2(16, 560)
 collision_mask = 16
-script = ExtResource("2_f4dvh")
+script = ExtResource("2_mk8en")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-texture = ExtResource("3_4bec7")
+texture = ExtResource("3_cf5q1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("RectangleShape2D_fblct")
@@ -129,7 +131,7 @@ position = Vector2(192, 328)
 collision_layer = 16
 
 [node name="Sprite2D" type="Sprite2D" parent="movingPlatform/AnimatableBody2D"]
-texture = ExtResource("4_47cvl")
+texture = ExtResource("4_bjih1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="movingPlatform/AnimatableBody2D"]
 shape = SubResource("RectangleShape2D_eb6sq")
@@ -147,7 +149,7 @@ position = Vector2(912, 584)
 collision_layer = 16
 
 [node name="Sprite2D" type="Sprite2D" parent="movingplatform2/AnimatableBody2D"]
-texture = ExtResource("4_47cvl")
+texture = ExtResource("4_bjih1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="movingplatform2/AnimatableBody2D"]
 shape = SubResource("RectangleShape2D_xkmrb")
@@ -158,3 +160,18 @@ autoplay = "updown"
 libraries = {
 "": SubResource("AnimationLibrary_w1rt8")
 }
+
+[node name="collectible" type="Node2D" parent="."]
+
+[node name="coins" type="Node2D" parent="collectible"]
+unique_name_in_owner = true
+script = ExtResource("5_wkons")
+coin = ExtResource("6_mdob0")
+
+[node name="coin" parent="collectible/coins" instance=ExtResource("6_mdob0")]
+
+[node name="coin2" parent="collectible/coins" instance=ExtResource("6_mdob0")]
+position = Vector2(288, 552)
+
+[node name="coin3" parent="collectible/coins" instance=ExtResource("6_mdob0")]
+position = Vector2(608, 552)

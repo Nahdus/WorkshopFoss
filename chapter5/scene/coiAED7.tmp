@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://ba5723ovbwogs"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ddepx"]
+load_path = "res://.godot/imported/floor.png-4f644931d74545d6c8ab955535ebc301.ctex"
+
+[sub_resource type="GDScript" id="GDScript_pq3e5"]
+script/source = "extends Sprite2D
+
+var subscribers =[]
+signal touched_coin
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func subscribe(functionName):
+	print_debug(functionName)
+	touched_coin.connect(functionName)
+	functionName.call()
+
+
+func _on_area_2d_body_entered(_body):
+	emit_signal(\"touched_coin\")
+	queue_free()
+	pass # Replace with function body.
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_grbc4"]
+
+[node name="coin" type="Sprite2D"]
+self_modulate = Color(1, 0.996078, 0, 1)
+position = Vector2(104, 552)
+scale = Vector2(0.75, 0.75)
+texture = SubResource("CompressedTexture2D_ddepx")
+script = SubResource("GDScript_pq3e5")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_grbc4")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

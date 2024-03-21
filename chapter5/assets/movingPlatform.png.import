@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dyki2au3w5r38"
-path="res://.godot/imported/floor.png-36d3d517faaf4de1fcaf08bfcec3a767.ctex"
+uid="uid://cjgyxgtdnec8h"
+path="res://.godot/imported/movingPlatform.png-e368d623f84a2be6558831ccacf8a38b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://chapter4/assets/floor.png"
-dest_files=["res://.godot/imported/floor.png-36d3d517faaf4de1fcaf08bfcec3a767.ctex"]
+source_file="res://chapter5/assets/movingPlatform.png"
+dest_files=["res://.godot/imported/movingPlatform.png-e368d623f84a2be6558831ccacf8a38b.ctex"]
 
 [params]
 
